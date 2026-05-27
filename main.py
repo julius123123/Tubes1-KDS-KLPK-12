@@ -4,6 +4,7 @@ import matplotlib
 
 from src.alignments import needleman_wunsch, smith_waterman
 from src.utils import load_fasta
+from src.classifier import classify_queries
 
 DATA_DIR = Path("data")
 
@@ -30,6 +31,12 @@ def run_demo() -> None:
     print(f"Score: {score}")
     print(a1)
     print(a2)
+    print()
+
+    print("== Klasifikasi Varian ==")
+    results = classify_queries(queries, refs)
+    for q_id, result in results.items():
+        print(f"{q_id} -> {result.label} (score={result.score}, sim={result.similarity:.3f})")
     print()
 
 
