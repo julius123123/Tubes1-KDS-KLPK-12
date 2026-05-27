@@ -2,7 +2,7 @@ from pathlib import Path
 
 import matplotlib
 
-from src.alignments import needleman_wunsch
+from src.alignments import needleman_wunsch, smith_waterman
 from src.utils import load_fasta
 
 DATA_DIR = Path("data")
@@ -16,6 +16,15 @@ def run_demo() -> None:
     s1_id, s1 = next(iter(queries.items()))
     s2_id, s2 = next(iter(refs.items()))
     score, a1, a2 = needleman_wunsch(s1, s2)
+    print(f"Query: {s1_id}")
+    print(f"Ref:   {s2_id}")
+    print(f"Score: {score}")
+    print(a1)
+    print(a2)
+    print()
+
+    print("== Smith-Waterman (Local) Demo ==")
+    score, a1, a2 = smith_waterman(s1, s2)
     print(f"Query: {s1_id}")
     print(f"Ref:   {s2_id}")
     print(f"Score: {score}")
