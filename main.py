@@ -33,12 +33,14 @@ def run_demo() -> None:
     print(a2)
     print()
 
-    print("== Klasifikasi Varian ==")
-    results = classify_queries(queries, refs)
-    for q_id, result in results.items():
-        print(f"{q_id} -> {result.label} (score={result.score}, sim={result.similarity:.3f})")
-    print()
-
+    print("== Klasifikasi Varian (per method) ==")
+    all_results = classify_queries(queries, refs)
+    methods = list(all_results.keys())
+    for method in methods:
+        print(f"-- Method: {method}")
+        for q_id, result in all_results[method].items():
+            print(f"{q_id} -> {result.label} (score={result.score}, sim={result.similarity:.3f})")
+        print()
 
 if __name__ == "__main__":
     run_demo()
