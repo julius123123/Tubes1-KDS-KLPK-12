@@ -1,12 +1,16 @@
 from pathlib import Path
 
 import matplotlib
+import matplotlib.pyplot as plt
+from Bio import Phylo
 
 from src.alignments import needleman_wunsch, smith_waterman
-from src.utils import load_fasta
 from src.classifier import classify_queries
+from src.phylo import build_tree
+from src.utils import load_fasta
 
 DATA_DIR = Path("data")
+
 
 def run_demo() -> None:
     matplotlib.use("Agg")
@@ -41,6 +45,28 @@ def run_demo() -> None:
         for q_id, result in all_results[method].items():
             print(f"{q_id} -> {result.label} (score={result.score}, sim={result.similarity:.3f})")
         print()
+
+    print("== Pohon Filogenetik (ASCII) ==")
+    tree = build_tree({**refs, **queries})
+    print(tree)
+    out_dir = Path("output")
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    tree_path = out_dir / "tree.nwk"
+    tree_path.write_text(tree.format("newick"))
+    print(f"Newick saved to: {tree_path}")
+
+    fig = plt.figure(figsize=(8, 6), dpi=160)
+    ax = fig.add_subplot(1, 1, 1)
+    Phylo.draw(tree, axes=ax, do_show=False)
+    png_path = out_dir / "tree.png"
+    svg_path = out_dir / "tree.svg"
+    fig.tight_layout()
+    fig.savefig(png_path)
+    fig.savefig(svg_path)
+    print(f"PNG saved to: {png_path}")
+    print(f"SVG saved to: {svg_path}")
+
 
 if __name__ == "__main__":
     run_demo()
