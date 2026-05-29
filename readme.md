@@ -55,12 +55,12 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## Anggota Kelompok
+## Anggota Kelompok dan Pembagian Tugas
 
-| Nama | NIM |
-|------|-----|
-| Muhammad Aufa Farabi | 13523023 |
-| Joel Hotlan Haris Siahaan | 13523025 |
-| Julius Arthur | 13523030 |
-| Ferdinand Gabe Tua Sinaga | 13523051 |
+| Nama | NIM | Kontribusi Utama |
+|------|-----|------------------|
+| Muhammad Aufa Farabi | 13523023 | Klasifikasi varian dan evaluasi kemiripan sekuens |
+| Joel Hotlan Haris Siahaan | 13523025 | Implementasi algoritma sequence alignment (Needleman-Wunsch dan Smith-Waterman) |
+| Julius Arthur | 13523030 | Preprocessing data genom dan integrasi pipeline program |
+| Ferdinand Gabe Tua Sinaga | 13523051 | Konstruksi dan visualisasi pohon filogenetik |
 
